@@ -50,8 +50,8 @@
                 <h4 style="color: #ffffff; font-size: 16px; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px;">Quick Links</h4>
                 <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; line-height: 1.8;">
                     <li style="margin-bottom: 6px;"><a href="intro.php" style="color: #aaa; text-decoration: none; transition: color 0.2s;">Introduction</a></li>
-                    <li style="margin-bottom: 6px;"><a href="apply-job.php" style="color: #aaa; text-decoration: none; transition: color 0.2s;">Apply A Job</a></li>
-                    <li style="margin-bottom: 6px;"><a href="post-job.php" style="color: #aaa; text-decoration: none; transition: color 0.2s;">Post A Job</a></li>
+                    <li style="margin-bottom: 6px;"><a href="apply_job.php" style="color: #aaa; text-decoration: none; transition: color 0.2s;">Apply A Job</a></li>
+                    <li style="margin-bottom: 6px;"><a href="submit_vacancy.php" style="color: #aaa; text-decoration: none; transition: color 0.2s;">Post A Job</a></li>
                     <li><a href="contact.php" style="color: #aaa; text-decoration: none; transition: color 0.2s;">Contact Us</a></li>
                 </ul>
             </div>

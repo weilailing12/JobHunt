@@ -33,53 +33,77 @@ include 'header.php';
         </div>
     </section>
 
-    <!-- Section 2: Eligibility Categories (Grid Layout) -->
+    <!-- Section 2: Eligibility Categories (Grid Layout with Photos) -->
     <section style="margin-bottom: 50px;">
         <h2 style="text-align: center; font-size: 28px; color: #222; margin-bottom: 10px;">Eligibility</h2>
         <p style="text-align: center; font-size: 16px; color: #666; margin-bottom: 30px;">Who qualifies for the Professional Visit Pass?</p>
         
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 25px;">
             
             <!-- Card 1: Foreign Artist -->
-            <div style="background: #ffffff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #eaeaea;">
-                <h3 style="font-size: 18px; color: #007bff; margin-top: 0; margin-bottom: 12px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px;">Foreign Artist (Filming & Performance)</h3>
-                <ul style="margin: 0; padding-left: 20px; color: #555; font-size: 14px; line-height: 1.6;">
-                    <li>Stage artist (singing, music, dance, theatre, acrobatics, circus, etc.)</li>
-                    <li>Filming (in Malaysia with an overseas company) & Producing</li>
-                    <li>Performance in hotels, cultural centers, stadiums, etc.</li>
-                    <li>Expert in arts management and screen-related arts</li>
-                </ul>
+            <div style="background: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #eaeaea; display: flex; flex-direction: column;">
+                <div style="height: 180px; background: #f8f9fa; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                    <img src="assets/singer.jpg" alt="Foreign Artist" style="max-width: 100%; max-height: 100%; object-fit: contain;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div style="display: none; width: 100%; height: 100%; background: #e2e8f0; align-items: center; justify-content: center; color: #718096; font-size: 13px;">[Photo: Foreign Artist]</div>
+                </div>
+                <div style="padding: 25px; flex: 1;">
+                    <h3 style="font-size: 18px; color: #007bff; margin-top: 0; margin-bottom: 12px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px;">Foreign Artist (Filming & Performance)</h3>
+                    <ul style="margin: 0; padding-left: 20px; color: #555; font-size: 14px; line-height: 1.6;">
+                        <li>Stage artist (singing, music, dance, theatre, acrobatics, circus, etc.)</li>
+                        <li>Filming (in Malaysia with an overseas company) & Producing</li>
+                        <li>Performance in hotels, cultural centers, stadiums, etc.</li>
+                        <li>Expert in arts management and screen-related arts</li>
+                    </ul>
+                </div>
             </div>
 
             <!-- Card 2: Islamic Missionary -->
-            <div style="background: #ffffff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #eaeaea;">
-                <h3 style="font-size: 18px; color: #007bff; margin-top: 0; margin-bottom: 12px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px;">Islamic Missionary</h3>
-                <ul style="margin: 0; padding-left: 20px; color: #555; font-size: 14px; line-height: 1.6;">
-                    <li>Islamic Teacher</li>
-                    <li>Al-Quran Teacher</li>
-                    <li>Arabic Teacher</li>
-                </ul>
+            <div style="background: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #eaeaea; display: flex; flex-direction: column;">
+                <div style="height: 180px; background: #f8f9fa; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                    <img src="assets/islamic.jpg" alt="Islamic Missionary" style="max-width: 100%; max-height: 100%; object-fit: contain;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div style="display: none; width: 100%; height: 100%; background: #e2e8f0; align-items: center; justify-content: center; color: #718096; font-size: 13px;">[Photo: Islamic Missionary]</div>
+                </div>
+                <div style="padding: 25px; flex: 1;">
+                    <h3 style="font-size: 18px; color: #007bff; margin-top: 0; margin-bottom: 12px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px;">Islamic Missionary</h3>
+                    <ul style="margin: 0; padding-left: 20px; color: #555; font-size: 14px; line-height: 1.6;">
+                        <li>Islamic Teacher</li>
+                        <li>Al-Quran Teacher</li>
+                        <li>Arabic Teacher</li>
+                    </ul>
+                </div>
             </div>
 
             <!-- Card 3: Other Religious Workers -->
-            <div style="background: #ffffff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #eaeaea;">
-                <h3 style="font-size: 18px; color: #007bff; margin-top: 0; margin-bottom: 12px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px;">Other Religious Workers</h3>
-                <ul style="margin: 0; padding-left: 20px; color: #555; font-size: 14px; line-height: 1.6;">
-                    <li>Gurukkal & Granthi</li>
-                    <li>Priest & Guru Dharma</li>
-                    <li>Religious musicians & sculptors</li>
-                </ul>
+            <div style="background: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #eaeaea; display: flex; flex-direction: column;">
+                <div style="height: 180px; background: #f8f9fa; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                    <img src="assets/guru.jpg" alt="Other Religious Workers" style="max-width: 100%; max-height: 100%; object-fit: contain;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div style="display: none; width: 100%; height: 100%; background: #e2e8f0; align-items: center; justify-content: center; color: #718096; font-size: 13px;">[Photo: Religious Workers]</div>
+                </div>
+                <div style="padding: 25px; flex: 1;">
+                    <h3 style="font-size: 18px; color: #007bff; margin-top: 0; margin-bottom: 12px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px;">Other Religious Workers</h3>
+                    <ul style="margin: 0; padding-left: 20px; color: #555; font-size: 14px; line-height: 1.6;">
+                        <li>Gurukkal & Granthi</li>
+                        <li>Priest & Guru Dharma</li>
+                        <li>Religious musicians & sculptors</li>
+                    </ul>
+                </div>
             </div>
 
             <!-- Card 4: Others -->
-            <div style="background: #ffffff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #eaeaea;">
-                <h3 style="font-size: 18px; color: #007bff; margin-top: 0; margin-bottom: 12px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px;">Other Categories</h3>
-                <ul style="margin: 0; padding-left: 20px; color: #555; font-size: 14px; line-height: 1.6;">
-                    <li>International students studying at Malaysia Bible Seminary</li>
-                    <li>Government officials (G2G programs / official purposes)</li>
-                    <li>Jockey experts & Volunteers</li>
-                    <li>International students under mobility programs or industrial training</li>
-                </ul>
+            <div style="background: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #eaeaea; display: flex; flex-direction: column;">
+                <div style="height: 180px; background: #f8f9fa; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                    <img src="assets/student.jpg" alt="Other Categories" style="max-width: 100%; max-height: 100%; object-fit: contain;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div style="display: none; width: 100%; height: 100%; background: #e2e8f0; align-items: center; justify-content: center; color: #718096; font-size: 13px;">[Photo: Other Categories]</div>
+                </div>
+                <div style="padding: 25px; flex: 1;">
+                    <h3 style="font-size: 18px; color: #007bff; margin-top: 0; margin-bottom: 12px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px;">Other Categories</h3>
+                    <ul style="margin: 0; padding-left: 20px; color: #555; font-size: 14px; line-height: 1.6;">
+                        <li>International students studying at Malaysia Bible Seminary</li>
+                        <li>Government officials (G2G programs / official purposes)</li>
+                        <li>Jockey experts & Volunteers</li>
+                        <li>International students under mobility programs or industrial training</li>
+                    </ul>
+                </div>
             </div>
 
         </div>

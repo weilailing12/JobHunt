@@ -177,7 +177,7 @@
                         <div class="dropdown-content">
                             <a href="esd.php">Expatriate Services Division (ESD)</a>
                             <a href="pvp.php">Professional Visit Pass (PVP)</a>
-                            <a href="services-hr-outsourcing.php">HR Outsourcing Services</a>
+                            <a href="hr-outsourcing.php">HR Outsourcing Services</a>
                         </div>
                     </li>
 

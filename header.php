@@ -189,8 +189,8 @@
 
             <!-- Rightmost: CTA Buttons -->
             <div class="header-buttons">
-                <a href="post-job.php" class="btn-post">Post A Job</a>
-                <a href="apply-job.php" class="btn-apply">Apply A Job</a>
+                <a href="submit_vacancy.php" class="btn-post">Post A Job</a>
+                <a href="apply_job.php" class="btn-apply">Apply A Job</a>
             </div>
 
         </div>

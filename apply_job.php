@@ -68,10 +68,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </section>
 
     <?php if ($formSubmitted): ?>
-        <!-- Success Alert Banner -->
-        <div style="background-color: #d4edda; color: #155724; padding: 15px 20px; border-radius: 8px; border: 1px solid #c3e6cb; margin-bottom: 30px; text-align: center; font-size: 15px;">
-            <strong>Thank you, <?php echo $name; ?>!</strong> Your application for <strong><?php echo $category; ?></strong> has been submitted successfully. Our customer service team will contact you shortly.
-        </div>
+        <!-- JavaScript Alert Box with OK button -->
+        <script>
+            alert("Thank you, <?php echo addslashes($name); ?>! Your application for <?php echo addslashes($category); ?> has been submitted successfully. Our customer service team will contact you shortly.");
+            window.location.href = "index.php"; // Redirects to homepage after clicking OK
+        </script>
     <?php elseif (isset($dbError)): ?>
         <div style="background-color: #f8d7da; color: #721c24; padding: 15px 20px; border-radius: 8px; border: 1px solid #f5c6cb; margin-bottom: 30px; text-align: center; font-size: 15px;">
             <?php echo $dbError; ?>
@@ -116,14 +117,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label style="display: block; font-size: 14px; font-weight: bold; color: #444; margin-bottom: 6px;">
                     Job Category <span style="color: red;">*</span>
                 </label>
-                <select name="job_category" required style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; box-sizing: border-box; background: #fff;">
-                    <option value="" disabled <?php echo empty($selectedCategory) ? 'selected' : ''; ?>>-- Select a Job Category --</option>
-                    <?php foreach ($jobCategories as $cat): ?>
-                        <option value="<?php echo $cat; ?>" <?php echo (strcasecmp($selectedCategory, $cat) == 0) ? 'selected' : ''; ?>>
-                            <?php echo $cat; ?>
+               <!-- Job Category Dropdown (Locked if selected from homepage) -->
+            <div style="margin-bottom: 25px;">
+                <label style="display: block; font-size: 14px; font-weight: bold; color: #444; margin-bottom: 6px;">
+                    Job Category <span style="color: red;">*</span>
+                </label>
+                
+                <?php if (!empty($selectedCategory)): ?>
+                    <!-- If a category was chosen from the homepage, show it as locked/disabled, but pass the value using a hidden input -->
+                    <select disabled style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; box-sizing: border-box; background: #e9ecef; color: #495057; cursor: not-allowed;">
+                        <option value="<?php echo htmlspecialchars($selectedCategory); ?>" selected>
+                            <?php echo htmlspecialchars($selectedCategory); ?>
                         </option>
-                    <?php endforeach; ?>
-                </select>
+                    </select>
+                    <!-- Hidden input so the value is still submitted via POST to your database -->
+                    <input type="hidden" name="job_category" value="<?php echo htmlspecialchars($selectedCategory); ?>">
+                
+                <?php else: ?>
+                    <!-- If they came directly to the page without picking a category, show the normal selectable dropdown -->
+                    <select name="job_category" required style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; box-sizing: border-box; background: #fff;">
+                        <option value="" disabled selected>-- Select a Job Category --</option>
+                        <?php foreach ($jobCategories as $cat): ?>
+                            <option value="<?php echo $cat; ?>">
+                                <?php echo $cat; ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                <?php endif; ?>
+            </div>
             </div>
 
             <!-- Submit Your CV -->

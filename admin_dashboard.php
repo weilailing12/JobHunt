@@ -51,14 +51,20 @@ try {
                         <td><?= htmlspecialchars($app['id']) ?></td>
                         <td><?= htmlspecialchars($app['fullname']) ?></td>
                         <td><?= htmlspecialchars($app['email']) ?></td>
+                        <td><?= htmlspecialchars($app['contact']) ?></td>
                         <td><?= htmlspecialchars($app['category']) ?></td>
                         <td><?= htmlspecialchars($app['created_at']) ?></td>
-                        <td><a href="view_application.php?id=<?= $app['id'] ?>" style="color: #007bff; text-decoration: none; font-weight: bold;">View Details</a></td>
+                        <td>
+                            <!-- Direct link to view the uploaded PDF in a new tab -->
+                            <a href="uploads/<?= htmlspecialchars($app['cv_filename']) ?>" target="_blank" style="color: #007bff; text-decoration: none; font-weight: bold;">
+                                📄 View PDF
+                            </a>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="6" style="text-align: center; color: #777;">No job applications found in the database yet.</td>
+                    <td colspan="7" style="text-align: center; color: #777;">No job applications found in the database yet.</td>
                 </tr>
             <?php endif; ?>
         </tbody>

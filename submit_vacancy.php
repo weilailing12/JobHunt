@@ -50,10 +50,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </section>
 
     <?php if ($formSubmitted): ?>
-        <!-- Success Alert Banner -->
-        <div style="background-color: #d4edda; color: #155724; padding: 15px 20px; border-radius: 8px; border: 1px solid #c3e6cb; margin-bottom: 30px; text-align: center; font-size: 15px;">
-            <strong>Thank you, <?php echo $name; ?>!</strong> Your job vacancy submission has been received. Our customer service team will contact you shortly.
-        </div>
+        <!-- JavaScript Alert Box with OK button -->
+        <script>
+            alert("Thank you, <?php echo addslashes($name); ?>! Your job vacancy submission has been received. Our customer service team will contact you shortly.");
+            window.location.href = "index.php"; // Redirects to homepage after clicking OK
+        </script>
     <?php elseif (isset($dbError)): ?>
         <div style="background-color: #f8d7da; color: #721c24; padding: 15px 20px; border-radius: 8px; border: 1px solid #f5c6cb; margin-bottom: 30px; text-align: center; font-size: 15px;">
             <?php echo $dbError; ?>

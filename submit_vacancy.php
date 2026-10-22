@@ -1,8 +1,9 @@
 <?php
-// Include header
+// Include header and database connection
 include 'header.php';
+include 'database.php';
 
-// Initialize variables to prevent intelephense undefined warnings
+// Initialize variables
 $formSubmitted = false;
 $name = '';
 
@@ -11,12 +12,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email   = htmlspecialchars($_POST['email'] ?? '');
     $contact = htmlspecialchars($_POST['contact'] ?? '');
     
+    $jdFileName = '';
+
     // File upload handling for JD
     if (isset($_FILES['jd_file']) && $_FILES['jd_file']['error'] == 0) {
-        $fileName = $_FILES['jd_file']['name'];
+        $uploadDir = 'uploads/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0755, true);
+        }
+        
+        $fileExtension = pathinfo($_FILES['jd_file']['name'], PATHINFO_EXTENSION);
+        if (strtolower($fileExtension) == 'pdf') {
+            $jdFileName = time() . '_' . preg_replace("/[^a-zA-Z0-9._]/", "", basename($_FILES['jd_file']['name']));
+            $targetFilePath = $uploadDir . $jdFileName;
+            
+            if (move_uploaded_file($_FILES['jd_file']['tmp_name'], $targetFilePath)) {
+                try {
+                    $stmt = $pdo->prepare("INSERT INTO job_vacancies (fullname, email, contact, jd_filename) VALUES (?, ?, ?, ?)");
+                    $stmt->execute([$name, $email, $contact, $jdFileName]);
+                    $formSubmitted = true;
+                } catch (PDOException $e) {
+                    $dbError = "Database error: " . $e->getMessage();
+                }
+            }
+        }
     }
-
-    $formSubmitted = true;
 }
 ?>
 
@@ -33,6 +53,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <!-- Success Alert Banner -->
         <div style="background-color: #d4edda; color: #155724; padding: 15px 20px; border-radius: 8px; border: 1px solid #c3e6cb; margin-bottom: 30px; text-align: center; font-size: 15px;">
             <strong>Thank you, <?php echo $name; ?>!</strong> Your job vacancy submission has been received. Our customer service team will contact you shortly.
+        </div>
+    <?php elseif (isset($dbError)): ?>
+        <div style="background-color: #f8d7da; color: #721c24; padding: 15px 20px; border-radius: 8px; border: 1px solid #f5c6cb; margin-bottom: 30px; text-align: center; font-size: 15px;">
+            <?php echo $dbError; ?>
         </div>
     <?php endif; ?>
 

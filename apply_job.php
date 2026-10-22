@@ -1,8 +1,9 @@
 <?php
-// Include header
+// Include header and database connection
 include 'header.php';
+include 'database.php';
 
-// Initialize variables to prevent intelephense undefined warnings
+// Initialize variables
 $formSubmitted = false;
 $name = '';
 $category = '';
@@ -28,12 +29,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $contact  = htmlspecialchars($_POST['contact'] ?? '');
     $category = htmlspecialchars($_POST['job_category'] ?? '');
 
+    $cvFileName = '';
+
     // File upload handling for CV
     if (isset($_FILES['cv_file']) && $_FILES['cv_file']['error'] == 0) {
-        $fileName = $_FILES['cv_file']['name'];
+        $uploadDir = 'uploads/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0755, true); // Create uploads folder if it doesn't exist
+        }
+        
+        $fileExtension = pathinfo($_FILES['cv_file']['name'], PATHINFO_EXTENSION);
+        if (strtolower($fileExtension) == 'pdf') {
+            $cvFileName = time() . '_' . preg_replace("/[^a-zA-Z0-9._]/", "", basename($_FILES['cv_file']['name']));
+            $targetFilePath = $uploadDir . $cvFileName;
+            
+            if (move_uploaded_file($_FILES['cv_file']['tmp_name'], $targetFilePath)) {
+                // File uploaded successfully, now save to database
+                try {
+                    $stmt = $pdo->prepare("INSERT INTO job_applications (fullname, email, contact, category, cv_filename) VALUES (?, ?, ?, ?, ?)");
+                    $stmt->execute([$name, $email, $contact, $category, $cvFileName]);
+                    $formSubmitted = true;
+                } catch (PDOException $e) {
+                    $dbError = "Database error: " . $e->getMessage();
+                }
+            }
+        }
     }
-
-    $formSubmitted = true;
 }
 ?>
 
@@ -50,6 +71,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <!-- Success Alert Banner -->
         <div style="background-color: #d4edda; color: #155724; padding: 15px 20px; border-radius: 8px; border: 1px solid #c3e6cb; margin-bottom: 30px; text-align: center; font-size: 15px;">
             <strong>Thank you, <?php echo $name; ?>!</strong> Your application for <strong><?php echo $category; ?></strong> has been submitted successfully. Our customer service team will contact you shortly.
+        </div>
+    <?php elseif (isset($dbError)): ?>
+        <div style="background-color: #f8d7da; color: #721c24; padding: 15px 20px; border-radius: 8px; border: 1px solid #f5c6cb; margin-bottom: 30px; text-align: center; font-size: 15px;">
+            <?php echo $dbError; ?>
         </div>
     <?php endif; ?>
 

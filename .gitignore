@@ -1,0 +1,6 @@
+# Ignore all uploaded resumes and job descriptions
+uploads/
+
+# Ignore OS temporary files
+.DS_Store
+Thumbs.db

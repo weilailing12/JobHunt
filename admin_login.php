@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->execute([$username]);
             $adminUser = $stmt->fetch();
 
-            if ($adminUser && password_verify($password, $adminUser['password'])) {
+            if ($adminUser && hash_equals($adminUser['password'], hash('sha256', $password))) {
                 session_regenerate_id(true);
                 
                 $_SESSION['admin_logged_in'] = true;

@@ -1,25 +1,26 @@
 <?php
-require __DIR__ . '/admin_logout_new.php';
-exit;
+declare(strict_types=1);
 
-session_start();
+require __DIR__ . '/admin_bootstrap.php';
 
-// Unset all session variables
-$_SESSION = array();
-
-// Destroy session cookie if present
-if (ini_get("session.use_cookies")) {
-    $params = session_get_cookie_params();
-    setcookie(session_name(), '', time() - 42000,
-        $params["path"], $params["domain"],
-        $params["secure"], $params["httponly"]
-    );
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !adminVerifyCsrf($_POST['csrf_token'] ?? null)) {
+    http_response_code(405);
+    header('Allow: POST');
+    exit('Invalid logout request.');
 }
 
-// Destroy session
+$_SESSION = [];
+if (ini_get('session.use_cookies')) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', [
+        'expires' => time() - 42000,
+        'path' => $params['path'],
+        'domain' => $params['domain'],
+        'secure' => $params['secure'],
+        'httponly' => $params['httponly'],
+        'samesite' => $params['samesite'] ?? 'Lax',
+    ]);
+}
 session_destroy();
-
-// Redirect to home page
-header("Location: index.php");
-exit();
-?>
+header('Location: admin_login.php');
+exit;

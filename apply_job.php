@@ -1,6 +1,5 @@
 <?php
-// Include header and database connection
-include 'header.php';
+// Include database connection before any page output
 include 'database.php';
 
 // Initialize variables
@@ -23,39 +22,50 @@ $jobCategories = [
     "Information Technology"
 ];
 
+if (!in_array($selectedCategory, $jobCategories, true)) {
+    $selectedCategory = '';
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name     = htmlspecialchars($_POST['name'] ?? '');
-    $email    = htmlspecialchars($_POST['email'] ?? '');
-    $contact  = htmlspecialchars($_POST['contact'] ?? '');
-    $category = htmlspecialchars($_POST['job_category'] ?? '');
+    $name     = trim($_POST['name'] ?? '');
+    $email    = trim($_POST['email'] ?? '');
+    $contact  = trim($_POST['contact'] ?? '');
+    $category = trim($_POST['job_category'] ?? '');
+    $file     = $_FILES['cv_file'] ?? null;
 
-    $cvFileName = '';
-
-    // File upload handling for CV
-    if (isset($_FILES['cv_file']) && $_FILES['cv_file']['error'] == 0) {
-        $uploadDir = 'uploads/';
-        if (!is_dir($uploadDir)) {
-            mkdir($uploadDir, 0755, true); // Create uploads folder if it doesn't exist
-        }
-        
-        $fileExtension = pathinfo($_FILES['cv_file']['name'], PATHINFO_EXTENSION);
-        if (strtolower($fileExtension) == 'pdf') {
-            $cvFileName = time() . '_' . preg_replace("/[^a-zA-Z0-9._]/", "", basename($_FILES['cv_file']['name']));
-            $targetFilePath = $uploadDir . $cvFileName;
-            
-            if (move_uploaded_file($_FILES['cv_file']['tmp_name'], $targetFilePath)) {
-                // File uploaded successfully, now save to database
+    if ($name === '' || strlen($name) > 100 || strlen($email) > 100 || !filter_var($email, FILTER_VALIDATE_EMAIL) ||
+        $contact === '' || strlen($contact) > 30 || !in_array($category, $jobCategories, true)) {
+        $dbError = 'Please check your details and try again.';
+    } elseif (!$file || $file['error'] !== UPLOAD_ERR_OK || $file['size'] > 5 * 1024 * 1024) {
+        $dbError = 'Please upload a PDF CV smaller than 5 MB.';
+    } else {
+        $mimeType = (new finfo(FILEINFO_MIME_TYPE))->file($file['tmp_name']);
+        if ($mimeType !== 'application/pdf') {
+            $dbError = 'Only PDF files are accepted.';
+        } else {
+            $uploadDir = __DIR__ . DIRECTORY_SEPARATOR . 'uploads';
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+            $cvFileName = 'cv_' . bin2hex(random_bytes(16)) . '.pdf';
+            $targetFilePath = $uploadDir . DIRECTORY_SEPARATOR . $cvFileName;
+            if (!move_uploaded_file($file['tmp_name'], $targetFilePath)) {
+                $dbError = 'The CV could not be uploaded. Please try again.';
+            } else {
                 try {
                     $stmt = $pdo->prepare("INSERT INTO job_applications (fullname, email, contact, category, cv_filename) VALUES (?, ?, ?, ?, ?)");
                     $stmt->execute([$name, $email, $contact, $category, $cvFileName]);
                     $formSubmitted = true;
                 } catch (PDOException $e) {
-                    $dbError = "Database error: " . $e->getMessage();
+                    @unlink($targetFilePath);
+                    $dbError = 'Your application could not be saved. Please try again later.';
                 }
             }
         }
     }
 }
+
+include 'header.php';
 ?>
 
 <!-- Main Container for Apply Job Page -->
@@ -93,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label style="display: block; font-size: 14px; font-weight: bold; color: #444; margin-bottom: 6px;">
                     Name <span style="color: red;">*</span>
                 </label>
-                <input type="text" name="name" required placeholder="Enter your full name" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; box-sizing: border-box;">
+                <input type="text" name="name" maxlength="100" required placeholder="Enter your full name" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; box-sizing: border-box;">
             </div>
 
             <!-- Email Address -->
@@ -101,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label style="display: block; font-size: 14px; font-weight: bold; color: #444; margin-bottom: 6px;">
                     Email Address <span style="color: red;">*</span>
                 </label>
-                <input type="email" name="email" required placeholder="name@company.com" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; box-sizing: border-box;">
+                <input type="email" name="email" maxlength="100" required placeholder="name@company.com" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; box-sizing: border-box;">
             </div>
 
             <!-- Contact Number -->
@@ -109,15 +119,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label style="display: block; font-size: 14px; font-weight: bold; color: #444; margin-bottom: 6px;">
                     Contact Number <span style="color: red;">*</span>
                 </label>
-                <input type="tel" name="contact" required placeholder="e.g. +6012-345 6789" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; box-sizing: border-box;">
+                <input type="tel" name="contact" maxlength="30" required placeholder="e.g. +6012-345 6789" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; box-sizing: border-box;">
             </div>
 
-            <!-- Job Category Dropdown -->
-            <div style="margin-bottom: 25px;">
-                <label style="display: block; font-size: 14px; font-weight: bold; color: #444; margin-bottom: 6px;">
-                    Job Category <span style="color: red;">*</span>
-                </label>
-               <!-- Job Category Dropdown (Locked if selected from homepage) -->
+            <!-- Job Category Dropdown (Locked if selected from homepage) -->
             <div style="margin-bottom: 25px;">
                 <label style="display: block; font-size: 14px; font-weight: bold; color: #444; margin-bottom: 6px;">
                     Job Category <span style="color: red;">*</span>
@@ -145,7 +150,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </select>
                 <?php endif; ?>
             </div>
-            </div>
 
             <!-- Submit Your CV -->
             <div style="margin-bottom: 25px;">
@@ -157,7 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <!-- Customer Service Disclaimer Message -->
             <p style="font-size: 13px; color: #666; font-style: italic; margin-bottom: 25px;">
-                *Our customer service will contact you shortly after received your submission.
+                *Our customer service team will contact you after receiving your submission.
             </p>
 
             <!-- Send Button -->

@@ -20,7 +20,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->execute([$username]);
             $adminUser = $stmt->fetch();
 
-            if ($adminUser && hash_equals($adminUser['password'], hash('sha256', $password))) {
+            $storedPassword = $adminUser['password'] ?? '';
+            $usesLegacyHash = (bool) preg_match('/^[a-f0-9]{64}$/i', $storedPassword);
+            $passwordValid = password_verify($password, $storedPassword) ||
+                ($usesLegacyHash && hash_equals(strtolower($storedPassword), hash('sha256', $password)));
+
+            if ($adminUser && $passwordValid) {
+                if ($usesLegacyHash) {
+                    $newHash = password_hash($password, PASSWORD_DEFAULT);
+                    $update = $pdo->prepare("UPDATE admin_users SET password = ? WHERE id = ?");
+                    $update->execute([$newHash, $adminUser['id']]);
+                }
                 session_regenerate_id(true);
                 
                 $_SESSION['admin_logged_in'] = true;

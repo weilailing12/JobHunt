@@ -145,26 +145,35 @@
             background-color: #0056b3;
         }
     </style>
+    <link rel="stylesheet" href="assets/css/site.css">
+    <script src="assets/js/site.js" defer></script>
 </head>
 <body>
+
+    <a class="skip-link" href="#main-content">Skip to content</a>
 
     <header class="site-header">
         <div class="header-container">
             
             <!-- Left: Company Logo -->
             <div class="logo">
-                <a href="index.php">
+                <a class="brand" href="index.php" aria-label="Job Hunt home">
                     <img src="assets/JobHunt logo.png" alt="Job Hunt Logo">
                 </a>
             </div>
 
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+                <span></span><span></span><span></span>
+                <span class="sr-only">Open navigation</span>
+            </button>
+
             <!-- Center / Right: Navigation Links & Dropdowns -->
-            <nav>
+            <nav id="primary-navigation" class="primary-navigation" aria-label="Primary navigation">
                 <ul class="nav-menu">
                     
                     <!-- About Us Dropdown -->
                     <li class="dropdown">
-                        <a href="#">About Us ▾</a>
+                        <button class="dropdown-toggle" type="button" aria-expanded="false">About Us <span aria-hidden="true">⌄</span></button>
                         <div class="dropdown-content">
                             <a href="intro.php">Introduction</a>
                             <a href="missionvision.php">Mission & Vision</a>
@@ -173,7 +182,7 @@
 
                     <!-- Services Dropdown -->
                     <li class="dropdown">
-                        <a href="#">Services ▾</a>
+                        <button class="dropdown-toggle" type="button" aria-expanded="false">Services <span aria-hidden="true">⌄</span></button>
                         <div class="dropdown-content">
                             <a href="esd.php">Expatriate Services Division (ESD)</a>
                             <a href="pvp.php">Professional Visit Pass (PVP)</a>
@@ -181,19 +190,19 @@
                         </div>
                     </li>
 
-                    <li><a href="solutions.php">Our Solutions</a></li>
-                    <li><a href="methodology.php">Our Search Methodology</a></li>
-                    <li><a href="contact.php">Contact Us</a></li>
+                    <li><a href="solutions.php">Solutions</a></li>
+                    <li><a href="methodology.php">Methodology</a></li>
+                    <li><a href="contact.php">Contact</a></li>
                 </ul>
             </nav>
 
             <!-- Rightmost: CTA Buttons -->
-            <div class="header-buttons">
-                <a href="submit_vacancy.php" class="btn-post">Post A Job</a>
-                <a href="apply_job.php" class="btn-apply">Apply A Job</a>
+            <div class="header-actions">
+                <a href="submit_vacancy.php" class="button button-outline">Post a Job</a>
+                <a href="apply_job.php" class="button button-primary">Apply for a Job</a>
             </div>
 
         </div>
     </header>
 
-    <!-- Main page content starts after this -->
+    <main id="main-content">

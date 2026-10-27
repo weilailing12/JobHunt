@@ -1,6 +1,9 @@
 <?php
 // Include header
 include 'header.php';
+include 'views/solutions-content.php';
+include 'footer.php';
+return;
 ?>
 
 <!-- Main Container for Solutions Page -->

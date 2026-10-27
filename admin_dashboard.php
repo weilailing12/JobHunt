@@ -167,7 +167,7 @@ try {
                             <td><?= htmlspecialchars($app['category']) ?></td>
                             <td><?= htmlspecialchars($app['created_at']) ?></td>
                             <td>
-                                <a href="uploads/<?= htmlspecialchars($app['cv_filename']) ?>" target="_blank" style="color: #007bff; text-decoration: none; font-weight: bold;">
+                                <a href="uploads/<?= rawurlencode(basename($app['cv_filename'])) ?>" target="_blank" rel="noopener" style="color: #007bff; text-decoration: none; font-weight: bold;">
                                     📄 View CV (PDF)
                                 </a>
                             </td>
@@ -219,7 +219,7 @@ try {
                             <td><?= htmlspecialchars($vac['contact']) ?></td>
                             <td><?= htmlspecialchars($vac['created_at']) ?></td>
                             <td>
-                                <a href="uploads/<?= htmlspecialchars($vac['jd_filename']) ?>" target="_blank" style="color: #28a745; text-decoration: none; font-weight: bold;">
+                                <a href="uploads/<?= rawurlencode(basename($vac['jd_filename'])) ?>" target="_blank" rel="noopener" style="color: #28a745; text-decoration: none; font-weight: bold;">
                                     💼 View JD (PDF)
                                 </a>
                             </td>

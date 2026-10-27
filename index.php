@@ -1,6 +1,9 @@
 <?php
 // Include header
 include 'header.php';
+include 'views/home-content.php';
+include 'footer.php';
+return;
 ?>
 
 <!-- Main Container for Home Page -->

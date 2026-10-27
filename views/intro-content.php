@@ -45,4 +45,28 @@
     </div>
 </section>
 
+<section class="section section-white">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">Job Hunt group</span>
+            <h2>Our Group of Companies</h2>
+            <p>Explore the wider range of services offered by our group.</p>
+        </div>
+        <div class="partner-grid">
+            <a class="partner-card" href="https://www.jhenergy.com.my/" target="_blank" rel="noopener">
+                <div class="partner-logo"><img src="assets/jh-energy.jpg" alt="JH Energy logo" loading="lazy"></div>
+                <div class="partner-name"><strong>JH Energy</strong><span aria-hidden="true">↗</span></div>
+            </a>
+            <a class="partner-card" href="https://www.gbadvisory.com.my/" target="_blank" rel="noopener">
+                <div class="partner-logo"><img src="assets/gba.jpg" alt="Global Business Advisory logo" loading="lazy"></div>
+                <div class="partner-name"><strong>Global Business Advisory</strong><span aria-hidden="true">↗</span></div>
+            </a>
+            <a class="partner-card" href="https://www.jhtraining.com.my/" target="_blank" rel="noopener">
+                <div class="partner-logo"><img src="assets/jobhunttraining.jpg" alt="Job Hunt Training logo" loading="lazy"></div>
+                <div class="partner-name"><strong>Job Hunt Training</strong><span aria-hidden="true">↗</span></div>
+            </a>
+        </div>
+    </div>
+</section>
+
 <section class="section-compact section-white"><div class="container"><div class="cta-band"><div><h2>Need a tailored hiring solution?</h2><p>Share your vacancy and our team will contact you.</p></div><div class="cta-actions"><a class="button button-light" href="submit_vacancy.php">Post a job</a><a class="button button-outline" style="color:white;border-color:rgba(255,255,255,.45);background:transparent" href="contact.php">Contact us</a></div></div></div></section>

@@ -1,6 +1,7 @@
 <?php
 // Include header
 include 'header.php';
+renderPageHero('Short-term professional work', 'Professional Visit Pass (PVP)', 'Support for short-term projects, professional training and internship programmes in Malaysia.');
 ?>
 
 <!-- Main Container for PVP Page -->
@@ -8,9 +9,6 @@ include 'header.php';
 
     <!-- Section 1: Hero & About PVP -->
     <section style="text-align: center; margin-bottom: 50px;">
-        <h1 style="font-size: 36px; color: #111; margin-bottom: 10px;">Professional Visit Pass (PVP) in Malaysia</h1>
-        <p style="font-size: 16px; color: #007bff; font-weight: bold; margin-bottom: 30px;">Essential pass for short-term projects, training, and internships.</p>
-        
         <!-- About Box -->
         <div style="background: #ffffff; padding: 35px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #eaeaea; text-align: left; margin-bottom: 30px;">
             <h3 style="font-size: 22px; color: #007bff; margin-top: 0; margin-bottom: 15px;">About the Professional Visit Pass Malaysia</h3>

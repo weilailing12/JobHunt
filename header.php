@@ -1,9 +1,38 @@
+<?php
+$currentPage = basename($_SERVER['PHP_SELF'] ?? 'index.php');
+$pageTitles = [
+    'index.php' => 'Executive Search & Recruitment',
+    'intro.php' => 'About Us',
+    'missionvision.php' => 'Mission & Vision',
+    'esd.php' => 'Expatriate Services Division',
+    'pvp.php' => 'Professional Visit Pass',
+    'hr-outsourcing.php' => 'HR Outsourcing Services',
+    'solutions.php' => 'Our Solutions',
+    'methodology.php' => 'Our Search Methodology',
+    'contact.php' => 'Contact Us',
+    'apply_job.php' => 'Apply for a Job',
+    'submit_vacancy.php' => 'Post a Job',
+];
+$aboutPages = ['intro.php', 'missionvision.php'];
+$servicePages = ['esd.php', 'pvp.php', 'hr-outsourcing.php'];
+
+if (!function_exists('renderPageHero')) {
+    function renderPageHero(string $eyebrow, string $title, string $description): void
+    {
+        echo '<section class="page-hero"><div class="container section-heading">';
+        echo '<span class="eyebrow">' . htmlspecialchars($eyebrow) . '</span>';
+        echo '<h1>' . htmlspecialchars($title) . '</h1>';
+        echo '<p>' . htmlspecialchars($description) . '</p>';
+        echo '</div></section>';
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Hunt - HR Consulting & Recruitment</title>
+    <title><?= htmlspecialchars($pageTitles[$currentPage] ?? 'HR Consulting & Recruitment') ?> | Job Hunt</title>
     <style>
         /* Global Header Reset & Styling */
         * {
@@ -172,27 +201,27 @@
                 <ul class="nav-menu">
                     
                     <!-- About Us Dropdown -->
-                    <li class="dropdown">
+                    <li class="dropdown <?= in_array($currentPage, $aboutPages, true) ? 'is-active' : '' ?>">
                         <button class="dropdown-toggle" type="button" aria-expanded="false">About Us <span aria-hidden="true">⌄</span></button>
                         <div class="dropdown-content">
-                            <a href="intro.php">Introduction</a>
-                            <a href="missionvision.php">Mission & Vision</a>
+                            <a href="intro.php" <?= $currentPage === 'intro.php' ? 'aria-current="page"' : '' ?>>Introduction</a>
+                            <a href="missionvision.php" <?= $currentPage === 'missionvision.php' ? 'aria-current="page"' : '' ?>>Mission & Vision</a>
                         </div>
                     </li>
 
                     <!-- Services Dropdown -->
-                    <li class="dropdown">
+                    <li class="dropdown <?= in_array($currentPage, $servicePages, true) ? 'is-active' : '' ?>">
                         <button class="dropdown-toggle" type="button" aria-expanded="false">Services <span aria-hidden="true">⌄</span></button>
                         <div class="dropdown-content">
-                            <a href="esd.php">Expatriate Services Division (ESD)</a>
-                            <a href="pvp.php">Professional Visit Pass (PVP)</a>
-                            <a href="hr-outsourcing.php">HR Outsourcing Services</a>
+                            <a href="esd.php" <?= $currentPage === 'esd.php' ? 'aria-current="page"' : '' ?>>Expatriate Services Division (ESD)</a>
+                            <a href="pvp.php" <?= $currentPage === 'pvp.php' ? 'aria-current="page"' : '' ?>>Professional Visit Pass (PVP)</a>
+                            <a href="hr-outsourcing.php" <?= $currentPage === 'hr-outsourcing.php' ? 'aria-current="page"' : '' ?>>HR Outsourcing Services</a>
                         </div>
                     </li>
 
-                    <li><a href="solutions.php">Solutions</a></li>
-                    <li><a href="methodology.php">Methodology</a></li>
-                    <li><a href="contact.php">Contact</a></li>
+                    <li><a href="solutions.php" <?= $currentPage === 'solutions.php' ? 'aria-current="page"' : '' ?>>Solutions</a></li>
+                    <li><a href="methodology.php" <?= $currentPage === 'methodology.php' ? 'aria-current="page"' : '' ?>>Methodology</a></li>
+                    <li><a href="contact.php" <?= $currentPage === 'contact.php' ? 'aria-current="page"' : '' ?>>Contact</a></li>
                 </ul>
             </nav>
 

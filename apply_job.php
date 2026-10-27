@@ -66,16 +66,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 include 'header.php';
+renderPageHero('For candidates', 'Apply for a Job', 'Submit your details and CV to explore opportunities with Job Hunt.');
 ?>
 
 <!-- Main Container for Apply Job Page -->
 <div style="max-width: 700px; margin: 40px auto; padding: 0 20px; font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
-
-    <!-- Page Title -->
-    <section style="text-align: center; margin-bottom: 30px;">
-        <h1 style="font-size: 32px; color: #111; margin-bottom: 10px;">Apply A Job</h1>
-        <p style="font-size: 15px; color: #007bff; font-weight: bold;">Submit your details and CV to explore career opportunities with Job Hunt.</p>
-    </section>
 
     <?php if ($formSubmitted): ?>
         <!-- JavaScript Alert Box with OK button -->

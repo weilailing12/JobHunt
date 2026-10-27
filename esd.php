@@ -1,6 +1,7 @@
 <?php
 // Include header
 include 'header.php';
+renderPageHero('Expatriate support', 'Expatriate Services Division (ESD)', 'Guidance for Malaysian company registration and expatriate pass applications.');
 ?>
 
 <!-- Main Container for ESD Page -->
@@ -8,8 +9,6 @@ include 'header.php';
 
     <!-- Section 1: About ESD (Text on left, Picture on right) -->
     <section style="margin-bottom: 60px;">
-        <h1 style="font-size: 36px; color: #111; margin-bottom: 25px; text-align: center;">Expatriate Services Division (ESD)</h1>
-        
         <div style="background: #ffffff; padding: 35px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #eaeaea; display: flex; align-items: center; gap: 30px; flex-wrap: wrap;">
             
             <!-- Left: Description -->

@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     navigation?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeNavigation));
     window.addEventListener('resize', () => { if (window.innerWidth > 820) closeNavigation(); });
 
-    const revealTargets = document.querySelectorAll('.section-heading, .info-card, .method-card, .category-card, .split > *, .cta-band, main > div > section, main > section:not(.hero):not(.page-hero)');
+    const revealTargets = document.querySelectorAll('.section-heading, .info-card, .method-card, .category-card, .partner-card, .split > *, .cta-band, main > div > section, main > section:not(.hero):not(.page-hero)');
     revealTargets.forEach((element, index) => {
         element.classList.add('reveal');
         element.style.setProperty('--reveal-delay', `${Math.min(index % 4, 3) * 70}ms`);

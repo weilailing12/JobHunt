@@ -1,16 +1,11 @@
 <?php
 // Include header
 include 'header.php';
+renderPageHero('Get in touch', 'Contact Us', 'Speak with our team or visit our office at Oval Damansara.');
 ?>
 
 <!-- Main Container for Contact Page -->
 <div style="max-width: 1000px; margin: 40px auto; padding: 0 20px; font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
-
-    <!-- Page Header -->
-    <section style="text-align: center; margin-bottom: 40px;">
-        <h1 style="font-size: 36px; color: #111; margin-bottom: 10px;">Contact Us</h1>
-        <p style="font-size: 16px; color: #007bff; font-weight: bold;">Get in touch with our team or visit our office at Oval Damansara.</p>
-    </section>
 
     <!-- Main Section: Contact Info & Map Side-by-Side -->
     <div style="display: flex; gap: 30px; flex-wrap: wrap; margin-bottom: 40px;">
@@ -73,7 +68,7 @@ include 'header.php';
                 🗺️ Location Map
             </h3>
             <div style="width: 100%; height: 360px; border-radius: 8px; overflow: hidden; flex: 1;">
-                <<iframe
+                <iframe
                     src="https://maps.google.com/maps?q=Oval+Damansara,+Jalan+Damansara,+Taman+Tun+Dr+Ismail,+Kuala+Lumpur&t=&z=18&ie=UTF8&iwloc=&output=embed"
                     width="100%"
                     height="100%"

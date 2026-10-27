@@ -1,16 +1,11 @@
 <?php
 // Include header
 include 'header.php';
+renderPageHero('Payroll & HR operations', 'HR Outsourcing Services', 'Reliable payroll and HR administration support for growing businesses.');
 ?>
 
 <!-- Main Container for HR Outsourcing Services Page -->
 <div style="max-width: 1000px; margin: 40px auto; padding: 0 20px; font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
-
-    <!-- Page Title -->
-    <section style="text-align: center; margin-bottom: 40px;">
-        <h1 style="font-size: 36px; color: #111; margin-bottom: 10px;">HR Outsourcing Services</h1>
-        <p style="font-size: 16px; color: #007bff; font-weight: bold;">Comprehensive Payroll & HR Management Solutions</p>
-    </section>
 
     <!-- Section 1: Our Dedication to Payroll Services (Text Left + Picture Container Right) -->
     <section style="margin-bottom: 50px;">

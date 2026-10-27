@@ -1,15 +1,10 @@
 <?php
 include 'header.php';
+renderPageHero('Our direction', 'Mission & Vision', 'The principles that guide how Job Hunt serves clients and candidates.');
 ?>
 
 <!-- Main Container for Mission & Vision Page -->
 <div style="max-width: 900px; margin: 40px auto; padding: 0 20px; font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
-
-    <!-- Page Title Header -->
-    <section style="text-align: center; margin-bottom: 40px;">
-        <h1 style="font-size: 36px; color: #111; margin-bottom: 10px;">Our Mission & Vision</h1>
-        <p style="font-size: 14px; color: #007bff; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Guiding Principles of Job Hunt</p>
-    </section>
 
     <!-- Vision Card Section -->
     <section style="margin-bottom: 40px;">

@@ -1,5 +1,6 @@
 # Ignore all uploaded resumes and job descriptions
-uploads/
+uploads/*
+!uploads/.htaccess
 
 # Ignore OS temporary files
 .DS_Store

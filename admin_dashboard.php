@@ -1,4 +1,7 @@
 <?php
+require __DIR__ . '/admin_dashboard_new.php';
+exit;
+
 session_start();
 
 // Strict Session Guarding: Redirect unauthorized visitors to login page

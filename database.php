@@ -1,13 +1,14 @@
 <?php
-$host = 'localhost';
-$db   = 'jobhunt_db'; // Make sure this database exists in your phpMyAdmin
-$user = 'root';
-$pass = ''; // Default XAMPP password is usually blank
+$host = getenv('JOBHUNT_DB_HOST') ?: 'localhost';
+$db   = getenv('JOBHUNT_DB_NAME') ?: 'jobhunt_db';
+$user = getenv('JOBHUNT_DB_USER') ?: 'root';
+$pass = getenv('JOBHUNT_DB_PASSWORD') ?: '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass, [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES => false,
     ]);
 } catch (PDOException $e) {
     error_log('Database connection failed: ' . $e->getMessage());

@@ -1,4 +1,7 @@
 <?php
+require __DIR__ . '/admin_login_new.php';
+exit;
+
 session_start();
 include 'database.php';
 

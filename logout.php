@@ -1,4 +1,7 @@
 <?php
+require __DIR__ . '/admin_logout_new.php';
+exit;
+
 session_start();
 
 // Unset all session variables

@@ -31,12 +31,12 @@
             <p>Choose focused support for one role, a growing team or an outsourced HR process.</p>
         </div>
         <div class="card-grid">
-            <article class="info-card"><span class="card-number">01</span><h3>Executive Search</h3><p>Targeted research and confidential outreach for senior and specialist roles.</p></article>
-            <article class="info-card"><span class="card-number">02</span><h3>Permanent Placement</h3><p>Database search and structured screening for dependable long-term hires.</p></article>
-            <article class="info-card"><span class="card-number">03</span><h3>Contract Outsourcing</h3><p>Flexible talent support for project-based and temporary workforce needs.</p></article>
-            <article class="info-card"><span class="card-number">04</span><h3>Recruitment Process Outsourcing</h3><p>Extra recruiting capacity that scales with your hiring plans.</p></article>
-            <article class="info-card"><span class="card-number">05</span><h3>Payroll Administration</h3><p>Accurate payroll processing, reporting and statutory support.</p></article>
-            <article class="info-card"><span class="card-number">06</span><h3>HR &amp; Corporate Services</h3><p>Career days, assessments, events and contact-centre outsourcing.</p></article>
+            <article class="info-card"><span class="card-number">01</span><h3>Executive Search &amp; Selection</h3><p>Targeted, confidential search for senior and specialist positions.</p></article>
+            <article class="info-card"><span class="card-number">02</span><h3>Permanent Placement</h3><p>Efficient sourcing and screening for high-quality long-term hires.</p></article>
+            <article class="info-card"><span class="card-number">03</span><h3>Contract Outsourcing</h3><p>Flexible staffing support for projects and changing workforce needs.</p></article>
+            <article class="info-card"><span class="card-number">04</span><h3>Recruitment Process Outsourcing</h3><p>Scalable recruitment capacity that supports your internal HR team.</p></article>
+            <article class="info-card"><span class="card-number">05</span><h3>Payroll Administration</h3><p>Simplified payroll processing and reporting for growing businesses.</p></article>
+            <article class="info-card"><span class="card-number">06</span><h3>HR &amp; Corporate Events</h3><p>Practical platforms for HR learning, networking and engagement.</p></article>
         </div>
         <div style="text-align:center; margin-top:32px"><a class="button button-outline" href="solutions.php">View all solutions</a></div>
     </div>

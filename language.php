@@ -46,7 +46,13 @@ if (!defined('JOBHUNT_LANGUAGE_READY')) {
 
     function jobHuntLanguageUrl(string $language): string
     {
-        $path = basename((string) parse_url($_SERVER['REQUEST_URI'] ?? 'index.php', PHP_URL_PATH)) ?: 'index.php';
+        $requestPath = (string) parse_url($_SERVER['REQUEST_URI'] ?? '/index.php', PHP_URL_PATH);
+        $path = basename(rtrim($requestPath, '/'));
+        // A directory URL such as /JobHunt/ has no PHP filename. Always use
+        // the homepage instead of creating a broken relative URL like JobHunt?lang=zh.
+        if ($path === '' || !str_ends_with(strtolower($path), '.php')) {
+            $path = 'index.php';
+        }
         $query = $_GET;
         unset($query['lang']);
         if (in_array($language, ['en', 'zh'], true)) {

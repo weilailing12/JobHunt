@@ -163,6 +163,7 @@ html[data-theme="dark"] .section-white { background: #0b2030; }
 html[data-theme="dark"] .category-card img, html[data-theme="dark"] .partner-logo { background: #0c2437; }
 html[data-theme="dark"] .button-outline, html[data-theme="dark"] .button-light { background: var(--surface); color: var(--ink); border-color: var(--line); }
 html[data-theme="dark"] .compact-note { background: #10352f; border-color: #22604f; color: #c9f0e4; }
+html[data-theme="dark"] .info-card .bullet-list li { color: #d7e5f0; }
 html[data-theme="dark"] input, html[data-theme="dark"] select, html[data-theme="dark"] textarea { background: #0b2234 !important; color: var(--ink) !important; border-color: var(--line) !important; }
 html[data-theme="dark"] input::placeholder, html[data-theme="dark"] textarea::placeholder { color: #91a7b9; }
 html[data-theme="dark"] [style*="background: #ffffff"], html[data-theme="dark"] [style*="background-color: #ffffff"] { background: var(--surface) !important; }

@@ -74,8 +74,13 @@ renderPageHero('For candidates', 'Apply for a Job', 'Submit your details and CV 
 
     <?php if ($formSubmitted): ?>
         <!-- JavaScript Alert Box with OK button -->
+        <?php
+        $successMessage = jobHuntLanguage() === 'zh'
+            ? "谢谢，{$name}！您申请的 {$category} 职位已成功提交。我们的客服团队将很快与您联系。"
+            : "Thank you, {$name}! Your application for {$category} has been submitted successfully. Our customer service team will contact you shortly.";
+        ?>
         <script>
-            alert("Thank you, <?php echo addslashes($name); ?>! Your application for <?php echo addslashes($category); ?> has been submitted successfully. Our customer service team will contact you shortly.");
+            alert(<?php echo json_encode($successMessage, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>);
             window.location.href = "index.php"; // Redirects to homepage after clicking OK
         </script>
     <?php elseif (isset($dbError)): ?>

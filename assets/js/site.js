@@ -1,4 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.querySelector('.theme-toggle');
+    const root = document.documentElement;
+    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+    const getSavedTheme = () => {
+        try { return localStorage.getItem('jobhunt-theme'); } catch (error) { return null; }
+    };
+    const setTheme = (theme, save = false) => {
+        if (theme === 'dark') root.dataset.theme = 'dark';
+        else delete root.dataset.theme;
+
+        const isDark = theme === 'dark';
+        themeToggle?.setAttribute('aria-pressed', String(isDark));
+        themeToggle?.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+        if (save) {
+            try { localStorage.setItem('jobhunt-theme', theme); } catch (error) { /* Theme still changes for this visit. */ }
+        }
+    };
+    const initialTheme = root.dataset.theme === 'dark' ? 'dark' : 'light';
+    setTheme(initialTheme);
+    themeToggle?.addEventListener('click', () => setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark', true));
+    systemTheme.addEventListener?.('change', (event) => {
+        if (!getSavedTheme()) setTheme(event.matches ? 'dark' : 'light');
+    });
+
     const navToggle = document.querySelector('.nav-toggle');
     const navigation = document.querySelector('.primary-navigation');
     const closeNavigation = () => {

@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/language.php';
+
 $currentPage = basename($_SERVER['PHP_SELF'] ?? 'index.php');
 $pageTitles = [
     'index.php' => 'Executive Search & Recruitment',
@@ -15,24 +17,39 @@ $pageTitles = [
 ];
 $aboutPages = ['intro.php', 'missionvision.php'];
 $servicePages = ['esd.php', 'pvp.php', 'hr-outsourcing.php'];
+$siteCssVersion = (string) (@filemtime(__DIR__ . '/assets/css/site.css') ?: 1);
+$siteJsVersion = (string) (@filemtime(__DIR__ . '/assets/js/site.js') ?: 1);
 
 if (!function_exists('renderPageHero')) {
     function renderPageHero(string $eyebrow, string $title, string $description): void
     {
         echo '<section class="page-hero"><div class="container section-heading">';
-        echo '<span class="eyebrow">' . htmlspecialchars($eyebrow) . '</span>';
-        echo '<h1>' . htmlspecialchars($title) . '</h1>';
-        echo '<p>' . htmlspecialchars($description) . '</p>';
+        echo '<span class="eyebrow">' . htmlspecialchars(jobHuntText($eyebrow)) . '</span>';
+        echo '<h1>' . htmlspecialchars(jobHuntText($title)) . '</h1>';
+        echo '<p>' . htmlspecialchars(jobHuntText($description)) . '</p>';
         echo '</div></section>';
     }
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= htmlspecialchars(jobHuntLocale()) ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= htmlspecialchars($pageTitles[$currentPage] ?? 'HR Consulting & Recruitment') ?> | Job Hunt</title>
+    <title><?= htmlspecialchars(jobHuntText($pageTitles[$currentPage] ?? 'HR Consulting & Recruitment')) ?> | Job Hunt</title>
+    <script>
+        (() => {
+            try {
+                const savedTheme = localStorage.getItem('jobhunt-theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                    document.documentElement.dataset.theme = 'dark';
+                }
+            } catch (error) {
+                // Keep the default light theme when browser storage is unavailable.
+            }
+        })();
+    </script>
     <style>
         /* Global Header Reset & Styling */
         * {
@@ -174,8 +191,8 @@ if (!function_exists('renderPageHero')) {
             background-color: #0056b3;
         }
     </style>
-    <link rel="stylesheet" href="assets/css/site.css">
-    <script src="assets/js/site.js" defer></script>
+    <link rel="stylesheet" href="assets/css/site.css?v=<?= urlencode($siteCssVersion) ?>">
+    <script src="assets/js/site.js?v=<?= urlencode($siteJsVersion) ?>" defer></script>
 </head>
 <body>
 
@@ -224,6 +241,18 @@ if (!function_exists('renderPageHero')) {
                     <li><a href="contact.php" <?= $currentPage === 'contact.php' ? 'aria-current="page"' : '' ?>>Contact</a></li>
                 </ul>
             </nav>
+
+            <nav class="language-switcher" aria-label="Language selection">
+                <a href="<?= htmlspecialchars(jobHuntLanguageUrl('en')) ?>" lang="en" <?= jobHuntLanguage() === 'en' ? 'aria-current="true"' : '' ?>>EN</a>
+                <span aria-hidden="true">/</span>
+                <a href="<?= htmlspecialchars(jobHuntLanguageUrl('zh')) ?>" lang="zh-Hans" <?= jobHuntLanguage() === 'zh' ? 'aria-current="true"' : '' ?>>中文</a>
+            </nav>
+
+            <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode">
+                <span class="theme-icon theme-icon-light" aria-hidden="true">☀</span>
+                <span class="theme-icon theme-icon-dark" aria-hidden="true">☾</span>
+                <span class="sr-only">Change colour theme</span>
+            </button>
 
             <!-- Rightmost: CTA Buttons -->
             <div class="header-actions">

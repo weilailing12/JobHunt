@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; <?php echo date('Y'); ?> Job Hunt Sdn Bhd. All rights reserved.</p>
+            <p>&copy; <?php echo date('Y'); ?> Job Hunt Sdn Bhd. <?= htmlspecialchars(jobHuntText('All rights reserved.')) ?></p>
             <a href="admin_login.php">Admin portal</a>
         </div>
     </footer>

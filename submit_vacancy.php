@@ -53,8 +53,13 @@ renderPageHero('For employers', 'Post a Job', 'Share your vacancy and let our co
 
     <?php if ($formSubmitted): ?>
         <!-- JavaScript Alert Box with OK button -->
+        <?php
+        $successMessage = jobHuntLanguage() === 'zh'
+            ? "谢谢，{$name}！我们已收到您提交的职位空缺。我们的客服团队将很快与您联系。"
+            : "Thank you, {$name}! Your job vacancy submission has been received. Our customer service team will contact you shortly.";
+        ?>
         <script>
-            alert("Thank you, <?php echo addslashes($name); ?>! Your job vacancy submission has been received. Our customer service team will contact you shortly.");
+            alert(<?php echo json_encode($successMessage, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>);
             window.location.href = "index.php"; // Redirects to homepage after clicking OK
         </script>
     <?php elseif (isset($dbError)): ?>
